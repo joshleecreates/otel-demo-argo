@@ -21,6 +21,11 @@ opentelemetry-demo:
   components:
     adService:
       env:
+        - name: INSTANA_SERVICE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.labels['app.kubernetes.io/component']
         - name: FEATURE_FLAG_GRPC_SERVICE_ADDR
           value: '{{ include "otel-demo.name" . }}-featureflagservice:50053'      
         - name: AD_SERVICE_PORT
