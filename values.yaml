@@ -108,6 +108,11 @@ opentelemetry-demo:
           value: frontend-web
         - name: FRONTEND_PORT
           value: "8080"
+        - name: INSTANA_SERVICE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.labels['app.kubernetes.io/component']
         - name: INSTANA_AGENT_HOST
           valueFrom:
             fieldRef:
@@ -116,6 +121,11 @@ opentelemetry-demo:
       service:
         type: LoadBalancer
       env:
+        - name: INSTANA_SERVICE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.labels['app.kubernetes.io/component']
         - name: FRONTEND_PORT
           value: "8080"
         - name: FRONTEND_HOST
@@ -148,6 +158,11 @@ opentelemetry-demo:
               fieldPath: status.hostIP
     featureflagService:
       env:
+        - name: INSTANA_SERVICE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.labels['app.kubernetes.io/component']
         - name: FEATURE_FLAG_GRPC_SERVICE_PORT
           value: "50053"
         - name: FEATURE_FLAG_SERVICE_PORT
@@ -160,6 +175,11 @@ opentelemetry-demo:
           value: http://instana-agent.instana-agent.svc.cluster.local:4317
     ffsPostgres:
       env:
+        - name: INSTANA_SERVICE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.labels['app.kubernetes.io/component']
         - name: POSTGRES_DB
           value: ffs
         - name: POSTGRES_PASSWORD
@@ -168,8 +188,6 @@ opentelemetry-demo:
           value: ffs
         - name: OTEL_EXPORTER_OTLP_ENDPOINT
           value: http://instana-agent.instana-agent.svc.cluster.local:4317
-        - name: INSTANA_SERVICE_NAME
-          value: ffs_postgres
     frauddetectionService:
       env:
         - name: OTEL_EXPORTER_OTLP_ENDPOINT
