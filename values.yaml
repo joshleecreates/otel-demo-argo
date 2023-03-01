@@ -212,6 +212,11 @@ opentelemetry-demo:
           memory: 170Mi
     productCatalogService:
       env:
+        - name: INSTANA_SERVICE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.labels['app.kubernetes.io/component']
         - name: PRODUCT_CATALOG_SERVICE_PORT
           value: "8080"
         - name: FEATURE_FLAG_GRPC_SERVICE_ADDR
@@ -220,6 +225,11 @@ opentelemetry-demo:
           value: http://instana-agent.instana-agent.svc.cluster.local:4317
     recommendationService:
       env:
+        - name: INSTANA_SERVICE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.labels['app.kubernetes.io/component']
         - name: OTEL_PYTHON_LOG_CORRELATION
           value: "true"
         - name: PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION
