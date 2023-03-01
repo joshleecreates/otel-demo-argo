@@ -179,7 +179,7 @@ components:
         value: '{{ include "otel-demo.name" . }}-kafka:9092'
     resources:
       limits:
-        memory: 400Mi
+        memory: 600Mi
   paymentService:
     env:
       - name: PAYMENT_SERVICE_PORT
