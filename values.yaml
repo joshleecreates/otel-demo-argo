@@ -177,6 +177,9 @@ components:
         value: cumulative
       - name: KAFKA_SERVICE_ADDR
         value: '{{ include "otel-demo.name" . }}-kafka:9092'
+    resources:
+      limits:
+        memory: 400Mi
   paymentService:
     env:
       - name: PAYMENT_SERVICE_PORT
