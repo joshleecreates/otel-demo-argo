@@ -21,8 +21,3 @@ spec:
                   number: 80
             path: /
             pathType: Prefix
-
-  tls:
-    - hosts:
-        - {{ .Values.domain }}
-      secretName: otel-demo-tls
