@@ -11,18 +11,18 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-  - host: {{ .Values.domain }}
-    http:
-      paths:
-      - backend:
-          service:
-            name: open-telemetry-demo-frontendproxy
-            port:
-              number: 80
-        path: /
-        pathType: Prefix
+    - host: {{ .Values.domain }}
+      http:
+        paths:
+        - backend:
+            service:
+              name: open-telemetry-demo-frontendproxy
+              port:
+                number: 80
+          path: /
+          pathType: Prefix
 
   tls:
-  - hosts:
-    - {{ .Values.domain }}
-    secretName: otel-demo-tls
+    - hosts:
+      - {{ .Values.domain }}
+      secretName: otel-demo-tls
