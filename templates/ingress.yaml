@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-issuer
+    meta.helm.sh/release-namespace: mastodon
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+  name: otel-demo-ingress
+  namespace: otel-demo
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: {{ .Values.domain }}
+    http:
+      paths:
+      - backend:
+          service:
+            name: open-telemetry-demo-frontendproxy
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+
+  tls:
+  - hosts:
+    - {{ .Values.domain }}
+    secretName: otel-demo-tls
