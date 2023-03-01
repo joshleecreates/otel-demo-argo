@@ -1,4 +1,3 @@
-domain: instabug.craftersofcode.com
 opentelemetry-demo:
   default:
     image:
