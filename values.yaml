@@ -15,7 +15,7 @@ observability:
 prometheus:
   server:
     persistentVolume:
-      storageClass: emptyDir
+      enabled: false
 
 components:
   adService:
