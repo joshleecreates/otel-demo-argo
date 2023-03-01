@@ -123,8 +123,6 @@ opentelemetry-demo:
             fieldRef:
               fieldPath: status.hostIP
     frontendProxy: 
-      service:
-        type: LoadBalancer
       env:
         - name: INSTANA_SERVICE_NAME
           valueFrom:
