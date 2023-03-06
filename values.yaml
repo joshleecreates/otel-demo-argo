@@ -2,7 +2,7 @@ opentelemetry-demo:
   default:
     image:
       repository: joshuamlee/instabug-demo
-      tag: 1.3.0-eum-10
+      tag: 1.3.0-eum-11
   observability:
     otelcol:
       enabled: true
